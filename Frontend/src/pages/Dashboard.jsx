@@ -37,32 +37,37 @@ export default function Dashboard() {
   if (loading) return <div className="loading">Loading dashboard...</div>
 
   return (
-    <div className="dashboard">
-      <h1>Dashboard</h1>
+    <div className="dashboard-container">
+      <h1 className="dashboard-header">Dashboard</h1>
       {error && <p className="error">{error}</p>}
       <div className="stats-grid">
         <div className="stat-card" onClick={() => nav('/companies')}>
+          <div className="stat-icon companies"></div>
           <h2>{stats.companies}</h2>
           <p>Companies</p>
           <small>Click to view</small>
         </div>
         <div className="stat-card" onClick={() => nav('/departments')}>
+          <div className="stat-icon departments"></div>
           <h2>{stats.departments}</h2>
           <p>Departments</p>
           <small>Click to view</small>
         </div>
         <div className="stat-card" onClick={() => nav('/employees')}>
+          <div className="stat-icon employees"></div>
           <h2>{stats.employees}</h2>
           <p>Employees</p>
           <small>Click to view</small>
         </div>
       </div>
-      <div style={{ marginTop: '2rem', textAlign: 'center' }}>
-        <p style={{ color: '#666', marginBottom: '1rem' }}>Quick Actions:</p>
-        <button className="btn" onClick={() => nav('/companies')}>Manage Companies</button>
-        <button className="btn" style={{ marginLeft: '1rem' }} onClick={() => nav('/employees/create')}>
-          Add Employee
-        </button>
+      <div className="quick-actions">
+        <h3>Quick Actions</h3>
+        <div className="action-buttons">
+          <button className="btn btn-primary" onClick={() => nav('/companies')}>Manage Companies</button>
+          <button className="btn btn-secondary" onClick={() => nav('/employees/create')}>
+            Add Employee
+          </button>
+        </div>
       </div>
     </div>
   )
