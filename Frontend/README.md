@@ -1,32 +1,41 @@
-EMS Frontend (React + Vite)
+# Frontend
 
-Quick start
+This is the frontend for the Employee Management System. It is a React application built with Vite.
 
-1. Copy `.env.example` to `.env` and set `VITE_API_BASE` to your backend root (e.g. `http://localhost:8000`).
+## Setup
 
-2. Install dependencies and run dev server:
+1.  Navigate to the `Frontend` directory:
+    ```bash
+    cd Frontend
+    ```
+2.  Install the required dependencies:
+    ```bash
+    npm install
+    ```
+3.  Copy the `.env.example` file to `.env` and set the `VITE_API_BASE` variable to your backend's root URL (e.g., `http://localhost:8000`).
+    ```bash
+    cp .env.example .env
+    ```
 
-```bash
-cd Frontend
-npm install
-npm run dev
-```
+## Running the development server
 
-Notes
-- Login endpoint defaults to `VITE_LOGIN_ENDPOINT` or `/api/auth/login/`. Adjust to match your Django backend.
-- API calls use the base URL from `VITE_API_BASE`. Endpoints used:
-  - `/companies/`, `/companies/:id/`
-  - `/departments/`, `/departments/:id/` (supports `?company=` for filtering)
-  - `/employees/`, `/employees/:id/`
-- Auth uses token-based header `Authorization: Token <token>` or other token key returned by login. Update `src/context/AuthContext.jsx` if your backend uses JWT (`Bearer`) or session cookies.
+1.  Run the following command to start the development server:
+    ```bash
+    npm run dev
+    ```
 
-What's included
-- Routing (Login, Dashboard, Companies, Departments, Employees)
-- Auth context with token storage
-- Forms with basic validation for employees
-- Loading and error handling hooks
+## Notes
 
-Next steps you might want me to do:
-- Wire exact backend endpoints/formats if you provide them
-- Add richer UI or component library (e.g., Tailwind, MUI)
-- Add tests and CI
+-   The login endpoint defaults to `VITE_LOGIN_ENDPOINT` or `/api/auth/login/`. Adjust this to match your Django backend.
+-   API calls use the base URL from `VITE_API_BASE`. The endpoints used are:
+    -   `/companies/`, `/companies/:id/`
+    -   `/departments/`, `/departments/:id/` (supports `?company=` for filtering)
+    -   `/employees/`, `/employees/:id/`
+-   Authentication uses a token-based header: `Authorization: Token <token>`. Update `src/context/AuthContext.jsx` if your backend uses JWT (`Bearer`) or session cookies.
+
+## What's included
+
+-   Routing (Login, Dashboard, Companies, Departments, Employees)
+-   Authentication context with token storage
+-   Forms with basic validation for employees
+-   Loading and error handling hooks
