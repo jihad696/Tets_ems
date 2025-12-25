@@ -48,7 +48,7 @@ export default function App() {
           <Route path="/companies/:id/edit" element={<ProtectedRoute><CompanyEdit /></ProtectedRoute>} />
 
           <Route path="/departments" element={<ProtectedRoute><DepartmentsList /></ProtectedRoute>} />
-          <<Route path="/departments/create" element={<ProtectedRoute><DepartmentCreate /></ProtectedRoute>} />
+          <Route path="/departments/create" element={<ProtectedRoute><DepartmentCreate /></ProtectedRoute>} />
           <Route path="/departments/:id" element={<ProtectedRoute><DepartmentView /></ProtectedRoute>} />
           <Route path="/departments/:id/edit" element={<ProtectedRoute><DepartmentEdit /></ProtectedRoute>} />
 
