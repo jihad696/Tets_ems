@@ -25,6 +25,18 @@ export default function EmployeeReport() {
     }
   };
 
+  const formatDate = (date) => {
+    if (!date) return 'N/A';
+    const parsedDate = dayjs(date);
+    return parsedDate.isValid() ? parsedDate.format('YYYY-MM-DD') : 'Invalid Date';
+  };
+
+  const calculateDaysEmployed = (date) => {
+    if (!date) return 'N/A';
+    const parsedDate = dayjs(date);
+    return parsedDate.isValid() ? dayjs().diff(parsedDate, 'day') : 'N/A';
+  };
+
   if (loading) return <div className="loading">Loading employee report...</div>;
   if (error) return <p className="error">{error}</p>;
 
@@ -51,8 +63,8 @@ export default function EmployeeReport() {
               <td>{emp.email}</td>
               <td>{emp.mobile_number}</td>
               <td>{emp.designation}</td>
-              <td>{dayjs(emp.hired_date).format('YYYY-MM-DD')}</td>
-              <td>{dayjs().diff(dayjs(emp.hired_date), 'day')}</td>
+              <td>{formatDate(emp.hired_date)}</td>
+              <td>{calculateDaysEmployed(emp.hired_date)}</td>
               <td>{emp.company_name}</td>
               <td>{emp.department_name}</td>
             </tr>

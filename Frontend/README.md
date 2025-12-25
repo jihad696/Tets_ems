@@ -54,6 +54,6 @@ The frontend is a single-page application (SPA) built using React and Vite. The 
 -   [x] Protected routes for authenticated users
 -   [x] A dashboard page
 -   [x] CRUD functionality for companies
---  [x] CRUD functionality for departments
+-   [x] CRUD functionality for departments
 -   [x] CRUD functionality for employees
 -   [x] Token management with local storage
