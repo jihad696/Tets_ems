@@ -21,6 +21,8 @@ export default function NavBar(){
           <Link to="/companies">Companies</Link>
           <Link to="/departments">Departments</Link>
           <Link to="/employees">Employees</Link>
+          <Link to="/reports/employees">Employee Report</Link>
+          <Link to="/account">My Account</Link>
           <button className="btn" onClick={doLogout}>Logout</button>
         </>
       ) : (

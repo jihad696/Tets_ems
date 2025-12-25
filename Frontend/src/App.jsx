@@ -16,6 +16,9 @@ import EmployeesList from './pages/employees/EmployeesList'
 import EmployeeView from './pages/employees/EmployeeView'
 import EmployeeCreate from './pages/employees/EmployeeCreate'
 import EmployeeEdit from './pages/employees/EmployeeEdit'
+import EmployeeReport from './pages/reports/EmployeeReport'
+import UserAccountView from './pages/account/UserAccountView'
+import UserAccountEdit from './pages/account/UserAccountEdit'
 import './styles.css'
 
 function ProtectedRoute({ children }) {
@@ -49,6 +52,10 @@ export default function App() {
         <Route path="/employees/create" element={<ProtectedRoute><EmployeeCreate /></ProtectedRoute>} />
         <Route path="/employees/:id" element={<ProtectedRoute><EmployeeView /></ProtectedRoute>} />
         <Route path="/employees/:id/edit" element={<ProtectedRoute><EmployeeEdit /></ProtectedRoute>} />
+        <Route path="/reports/employees" element={<ProtectedRoute><EmployeeReport /></ProtectedRoute>} />
+
+        <Route path="/account" element={<ProtectedRoute><UserAccountView /></ProtectedRoute>} />
+        <Route path="/account/edit" element={<ProtectedRoute><UserAccountEdit /></ProtectedRoute>} />
       </Routes>
     </>
   )
