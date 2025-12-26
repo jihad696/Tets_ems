@@ -55,7 +55,7 @@ export default function EmployeeCreate() {
     if (!form.email.trim()) newErrors.email = 'Email is required'
     else if (!validateEmail(form.email)) newErrors.email = 'Invalid email format'
     if (!form.mobile_number.trim()) newErrors.mobile_number = 'Mobile is required'
-    else if (!validateMobile(form.mobile_number)) newErrors.mobile_number = 'Invalid mobile format'
+    else if (!validateMobile(form.mobile_number)) newErrors.mobile_number = 'Invalid mobile format. Must be in international format (e.g., +14155552671).'
     if (!form.designation.trim()) newErrors.designation = 'Designation is required'
     if (!form.company) newErrors.company = 'Company is required'
     if (!form.department) newErrors.department = 'Department is required'
@@ -134,6 +134,7 @@ export default function EmployeeCreate() {
             type="tel"
             value={form.mobile_number}
             onChange={(e) => setForm({ ...form, mobile_number: e.target.value })}
+            placeholder="+14155552671"
           />
           {errors.mobile_number && <p className="error-msg">{errors.mobile_number}</p>}
         </div>
