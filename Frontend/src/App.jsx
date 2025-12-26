@@ -16,40 +16,52 @@ import EmployeesList from './pages/employees/EmployeesList'
 import EmployeeView from './pages/employees/EmployeeView'
 import EmployeeCreate from './pages/employees/EmployeeCreate'
 import EmployeeEdit from './pages/employees/EmployeeEdit'
+import EmployeeReport from './pages/reports/EmployeeReport'
+import UserAccountView from './pages/account/UserAccountView'
+import UserAccountEdit from './pages/account/UserAccountEdit'
 import './styles.css'
 
 function ProtectedRoute({ children }) {
-  const { user, loading } = useAuth()
-  if (loading) return <div className="loading">Loading...</div>
+  const { user } = useAuth()
   return user ? children : <Navigate to="/login" />
 }
 
 export default function App() {
-  const { user } = useAuth()
+  const { user, loading } = useAuth()
+
+  if (loading) {
+    return <div className="loading-full-page">Loading...</div>
+  }
 
   return (
     <>
       <NavBar />
-      <Routes>
-        <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
-        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-        <Route path="/" element={<Navigate to="/dashboard" />} />
-        
-        <Route path="/companies" element={<ProtectedRoute><CompaniesList /></ProtectedRoute>} />
-        <Route path="/companies/create" element={<ProtectedRoute><CompanyCreate /></ProtectedRoute>} />
-        <Route path="/companies/:id" element={<ProtectedRoute><CompanyView /></ProtectedRoute>} />
-        <Route path="/companies/:id/edit" element={<ProtectedRoute><CompanyEdit /></ProtectedRoute>} />
-        
-        <Route path="/departments" element={<ProtectedRoute><DepartmentsList /></ProtectedRoute>} />
-        <Route path="/departments/create" element={<ProtectedRoute><DepartmentCreate /></ProtectedRoute>} />
-        <Route path="/departments/:id" element={<ProtectedRoute><DepartmentView /></ProtectedRoute>} />
-        <Route path="/departments/:id/edit" element={<ProtectedRoute><DepartmentEdit /></ProtectedRoute>} />
-        
-        <Route path="/employees" element={<ProtectedRoute><EmployeesList /></ProtectedRoute>} />
-        <Route path="/employees/create" element={<ProtectedRoute><EmployeeCreate /></ProtectedRoute>} />
-        <Route path="/employees/:id" element={<ProtectedRoute><EmployeeView /></ProtectedRoute>} />
-        <Route path="/employees/:id/edit" element={<ProtectedRoute><EmployeeEdit /></ProtectedRoute>} />
-      </Routes>
+      <main className="container">
+        <Routes>
+          <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+
+          <Route path="/companies" element={<ProtectedRoute><CompaniesList /></ProtectedRoute>} />
+          <Route path="/companies/create" element={<ProtectedRoute><CompanyCreate /></ProtectedRoute>} />
+          <Route path="/companies/:id" element={<ProtectedRoute><CompanyView /></ProtectedRoute>} />
+          <Route path="/companies/:id/edit" element={<ProtectedRoute><CompanyEdit /></ProtectedRoute>} />
+
+          <Route path="/departments" element={<ProtectedRoute><DepartmentsList /></ProtectedRoute>} />
+          <Route path="/departments/create" element={<ProtectedRoute><DepartmentCreate /></ProtectedRoute>} />
+          <Route path="/departments/:id" element={<ProtectedRoute><DepartmentView /></ProtectedRoute>} />
+          <Route path="/departments/:id/edit" element={<ProtectedRoute><DepartmentEdit /></ProtectedRoute>} />
+
+          <Route path="/employees" element={<ProtectedRoute><EmployeesList /></ProtectedRoute>} />
+          <Route path="/employees/create" element={<ProtectedRoute><EmployeeCreate /></ProtectedRoute>} />
+          <Route path="/employees/:id" element={<ProtectedRoute><EmployeeView /></ProtectedRoute>} />
+          <Route path="/employees/:id/edit" element={<ProtectedRoute><EmployeeEdit /></ProtectedRoute>} />
+          <Route path="/reports/employees" element={<ProtectedRoute><EmployeeReport /></ProtectedRoute>} />
+
+          <Route path="/account" element={<ProtectedRoute><UserAccountView /></ProtectedRoute>} />
+          <Route path="/account/edit" element={<ProtectedRoute><UserAccountEdit /></ProtectedRoute>} />
+        </Routes>
+      </main>
     </>
   )
 }
