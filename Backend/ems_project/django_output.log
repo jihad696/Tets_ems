@@ -1,0 +1,11 @@
+Watching for file changes with StatReloader
+[26/Dec/2025 13:34:23] "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+[26/Dec/2025 13:34:24] "POST /api/auth/login/ HTTP/1.1" 200 227
+[26/Dec/2025 13:34:24] "OPTIONS /api/companies/ HTTP/1.1" 200 0
+[26/Dec/2025 13:34:24] "OPTIONS /api/departments/ HTTP/1.1" 200 0
+[26/Dec/2025 13:34:24] "OPTIONS /api/employees/ HTTP/1.1" 200 0
+[26/Dec/2025 13:34:24] "OPTIONS /api/departments/ HTTP/1.1" 200 0
+[26/Dec/2025 13:34:24] "OPTIONS /api/employees/ HTTP/1.1" 200 0
+[26/Dec/2025 13:34:24] "OPTIONS /api/companies/ HTTP/1.1" 200 0
+[26/Dec/2025 13:34:24] "GET /api/companies/ HTTP/1.1" 200 850
+[26/Dec/2025 13:34:24] "GET /api/companies/ HTTP/1.1" 200 850

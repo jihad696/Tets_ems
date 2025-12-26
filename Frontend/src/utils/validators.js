@@ -3,5 +3,6 @@ export function validateEmail(email) {
 }
 
 export function validateMobile(mobile) {
-  return /^\d{10,}$/.test(mobile.replace(/\D/g, ''))
+  // Must be in international format, e.g., +14155552671
+  return /^\+\d{10,}$/.test(mobile)
 }
