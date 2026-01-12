@@ -1,0 +1,11 @@
+
+> ems-frontend@0.1.0 dev
+> vite
+
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+Re-optimizing dependencies because vite config has changed
+
+  VITE v5.4.21  ready in 281 ms
+
+  ➜  Local:   http://localhost:3000/
+  ➜  Network: use --host to expose
