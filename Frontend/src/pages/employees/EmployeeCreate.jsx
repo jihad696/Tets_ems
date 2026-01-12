@@ -13,6 +13,7 @@ export default function EmployeeCreate() {
     company: '',
     department: '',
     hired_date: '',
+    status: 'application_received',
   })
   const [companies, setCompanies] = useState([])
   const [departments, setDepartments] = useState([])
@@ -59,7 +60,9 @@ export default function EmployeeCreate() {
     if (!form.designation.trim()) newErrors.designation = 'Designation is required'
     if (!form.company) newErrors.company = 'Company is required'
     if (!form.department) newErrors.department = 'Department is required'
-    if (!form.hired_date) newErrors.hired_date = 'Hire date is required'
+    if (form.status === 'hired' && !form.hired_date) {
+        newErrors.hired_date = 'Hire date is required when status is Hired'
+    }
     return newErrors
   }
 
@@ -74,19 +77,22 @@ export default function EmployeeCreate() {
     setLoading(true)
     try {
       await api.post('/employees/', {
-        first_name: form.first_name,
-        last_name: form.last_name,
-        email: form.email,
-        mobile_number: form.mobile_number,
-        designation: form.designation,
+        ...form,
         company: parseInt(form.company),
         department: parseInt(form.department),
-        hired_date: form.hired_date,
+        hired_date: form.status === 'hired' ? form.hired_date : null,
       })
       nav('/employees')
     } catch (err) {
       console.error('Error:', err.response?.data)
-      setErrors({ submit: err.response?.data?.detail || JSON.stringify(err.response?.data) || 'Failed to create employee' })
+      const backendErrors = err.response?.data
+      const customErrors = {}
+      if(backendErrors){
+          for(const key in backendErrors){
+              customErrors[key] = backendErrors[key].join(' ')
+          }
+      }
+      setErrors({ ...newErrors, ...customErrors, submit: customErrors.non_field_errors || 'Failed to create employee' })
     } finally {
       setLoading(false)
     }
@@ -98,6 +104,7 @@ export default function EmployeeCreate() {
       <form onSubmit={handleSubmit} className="form">
         {errors.submit && <p className="error">{errors.submit}</p>}
         
+        {/* Form Fields */}
         <div className="form-group">
           <label>First Name *</label>
           <input
@@ -178,14 +185,30 @@ export default function EmployeeCreate() {
         </div>
 
         <div className="form-group">
-          <label>Hire Date *</label>
-          <input
-            type="date"
-            value={form.hired_date}
-            onChange={(e) => setForm({ ...form, hired_date: e.target.value })}
-          />
-          {errors.hired_date && <p className="error-msg">{errors.hired_date}</p>}
+            <label>Status *</label>
+            <select
+                value={form.status}
+                onChange={(e) => setForm({ ...form, status: e.target.value })}
+            >
+                <option value="application_received">Application Received</option>
+                <option value="interview_scheduled">Interview Scheduled</option>
+                <option value="hired">Hired</option>
+                <option value="not_accepted">Not Accepted</option>
+            </select>
+            {errors.status && <p className="error-msg">{errors.status}</p>}
         </div>
+
+        {form.status === 'hired' && (
+            <div className="form-group">
+            <label>Hire Date *</label>
+            <input
+                type="date"
+                value={form.hired_date}
+                onChange={(e) => setForm({ ...form, hired_date: e.target.value })}
+            />
+            {errors.hired_date && <p className="error-msg">{errors.hired_date}</p>}
+            </div>
+        )}
 
         <button type="submit" className="btn" disabled={loading}>
           {loading ? 'Creating...' : 'Create Employee'}
